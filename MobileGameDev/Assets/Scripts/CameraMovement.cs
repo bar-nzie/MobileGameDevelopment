@@ -62,8 +62,9 @@ public class CameraMovement : MonoBehaviour
             return;
         }
 
-        Ray ray = new Ray(cam.ScreenToWorldPoint(screenPos), cam.transform.forward);
+        Ray ray = cam.ScreenPointToRay(screenPos);
         RaycastHit hit;
+        Debug.DrawRay(ray.origin, ray.direction * 1000f, Color.red, 5f);
 
         if(Physics.Raycast(ray, out hit, 1000f))
         {
@@ -72,6 +73,7 @@ public class CameraMovement : MonoBehaviour
                 UIPen = hit.collider.GetComponent<UIVisibilityScript>();
                 UIPen.ShowUI();
             }
+
         }
     }
 
