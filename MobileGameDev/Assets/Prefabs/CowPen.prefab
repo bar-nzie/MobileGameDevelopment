@@ -126,9 +126,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6535302508722872222}
   - component: {fileID: 3158283151618525569}
+  - component: {fileID: 4709530725090446555}
   m_Layer: 0
   m_Name: CowPen
-  m_TagString: Untagged
+  m_TagString: pen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -213,8 +214,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.279923, y: 1.4343536, z: 12.577723}
-  m_Center: {x: 0.20881224, y: 0.21717682, z: -0.44102764}
+  m_Size: {x: 11.279923, y: 3.2368515, z: 15.829332}
+  m_Center: {x: 0.20881224, y: 1.118426, z: -2.0668325}
+--- !u!114 &4709530725090446555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302532292565997714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0ba7e311358ed48ba1098509fa094c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 4648238664594285090}
 --- !u!1 &7090606022161210010
 GameObject:
   m_ObjectHideFlags: 0

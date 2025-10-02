@@ -127,6 +127,15 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Press"",
+                    ""type"": ""Button"",
+                    ""id"": ""eb5c626c-711e-468d-bd63-07ae9cc535c8"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -184,6 +193,28 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
                     ""action"": ""touch1"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5981d3bd-b735-41aa-b2b1-2c9e23fdc95e"",
+                    ""path"": ""<Touchscreen>/Press"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""73b7d724-2d87-4aea-a151-f9a3115137cd"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Press"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -196,6 +227,7 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
         m_Game_Zoom = m_Game.FindAction("Zoom", throwIfNotFound: true);
         m_Game_touch0 = m_Game.FindAction("touch0", throwIfNotFound: true);
         m_Game_touch1 = m_Game.FindAction("touch1", throwIfNotFound: true);
+        m_Game_Press = m_Game.FindAction("Press", throwIfNotFound: true);
     }
 
     ~@MobileInput()
@@ -280,6 +312,7 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
     private readonly InputAction m_Game_Zoom;
     private readonly InputAction m_Game_touch0;
     private readonly InputAction m_Game_touch1;
+    private readonly InputAction m_Game_Press;
     /// <summary>
     /// Provides access to input actions defined in input action map "Game".
     /// </summary>
@@ -307,6 +340,10 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Game/touch1".
         /// </summary>
         public InputAction @touch1 => m_Wrapper.m_Game_touch1;
+        /// <summary>
+        /// Provides access to the underlying input action "Game/Press".
+        /// </summary>
+        public InputAction @Press => m_Wrapper.m_Game_Press;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -345,6 +382,9 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
             @touch1.started += instance.OnTouch1;
             @touch1.performed += instance.OnTouch1;
             @touch1.canceled += instance.OnTouch1;
+            @Press.started += instance.OnPress;
+            @Press.performed += instance.OnPress;
+            @Press.canceled += instance.OnPress;
         }
 
         /// <summary>
@@ -368,6 +408,9 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
             @touch1.started -= instance.OnTouch1;
             @touch1.performed -= instance.OnTouch1;
             @touch1.canceled -= instance.OnTouch1;
+            @Press.started -= instance.OnPress;
+            @Press.performed -= instance.OnPress;
+            @Press.canceled -= instance.OnPress;
         }
 
         /// <summary>
@@ -436,5 +479,12 @@ public partial class @MobileInput: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTouch1(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Press" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPress(InputAction.CallbackContext context);
     }
 }

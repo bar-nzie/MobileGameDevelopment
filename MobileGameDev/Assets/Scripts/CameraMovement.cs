@@ -8,9 +8,8 @@ public class CameraMovement : MonoBehaviour
     private float speed = 0.1f;
     private float zoomSpeed = 1f;
     public Camera cam;
-
-    private Touchscreen ts;
     private float prevMagnitude;
+    private UIVisibilityScript UIPen;
 
     private void Awake()
     {
@@ -21,6 +20,8 @@ public class CameraMovement : MonoBehaviour
 
         mInput.Game.Movement.performed += ctx => delta = ctx.ReadValue<Vector2>();
         mInput.Game.Movement.canceled += ctx => delta = Vector2.zero;
+
+        mInput.Game.Press.performed += screenTap;
 
         mInput.Game.touch1.performed += _ =>
         {
@@ -43,6 +44,35 @@ public class CameraMovement : MonoBehaviour
     private void OnDisable()
     {
         mInput.Disable();
+    }
+
+    private void screenTap(InputAction.CallbackContext context)
+    {
+        Vector2 screenPos;
+        if (Mouse.current != null && Mouse.current.leftButton.isPressed)
+        {
+            screenPos = Mouse.current.position.ReadValue();
+        }
+        else if(Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
+        {
+            screenPos = Touchscreen.current.position.ReadValue();
+        }
+        else
+        {
+            return;
+        }
+
+        Ray ray = new Ray(cam.ScreenToWorldPoint(screenPos), cam.transform.forward);
+        RaycastHit hit;
+
+        if(Physics.Raycast(ray, out hit, 1000f))
+        {
+            if(hit.collider.tag == "pen")
+            {
+                UIPen = hit.collider.GetComponent<UIVisibilityScript>();
+                UIPen.ShowUI();
+            }
+        }
     }
 
     // Update is called once per frame

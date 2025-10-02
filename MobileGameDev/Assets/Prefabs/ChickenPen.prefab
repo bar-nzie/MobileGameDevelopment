@@ -83,9 +83,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6535302508722872222}
   - component: {fileID: 4167166982422436251}
+  - component: {fileID: 2060270469967697293}
   m_Layer: 0
   m_Name: ChickenPen
-  m_TagString: Untagged
+  m_TagString: pen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -131,8 +132,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 10.7346, y: 1.3642249, z: 11.754692}
-  m_Center: {x: -0.12822342, y: 0.18211272, z: -0.22247791}
+  m_Size: {x: 10.7346, y: 2.7154503, z: 13.815008}
+  m_Center: {x: -0.12822342, y: 0.8577254, z: -1.252636}
+--- !u!114 &2060270469967697293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302532292565997714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0ba7e311358ed48ba1098509fa094c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 8983143626844897917}
 --- !u!1 &8727318136709552908
 GameObject:
   m_ObjectHideFlags: 0

@@ -148,9 +148,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6535302508722872222}
   - component: {fileID: 7408084926177591936}
+  - component: {fileID: 5494446412913128496}
   m_Layer: 0
   m_Name: PigPen
-  m_TagString: Untagged
+  m_TagString: pen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,8 +236,21 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 11.057766, y: 1.2421613, z: 12.181732}
-  m_Center: {x: -0.3019123, y: 0.12108064, z: 0.10068703}
+  m_Size: {x: 11.057766, y: 3.0164475, z: 15.825946}
+  m_Center: {x: -0.3019123, y: 1.0082235, z: -1.7214198}
+--- !u!114 &5494446412913128496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5302532292565997714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca0ba7e311358ed48ba1098509fa094c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 7730138406635501715}
 --- !u!1 &7730138406635501715
 GameObject:
   m_ObjectHideFlags: 0
