@@ -5,11 +5,13 @@ public class CameraMovement : MonoBehaviour
 {
     private MobileInput mInput;
     Vector2 delta;
-    private float speed = 0.1f;
-    private float zoomSpeed = 1f;
+    private float speed = 0.05f;
+    private float zoomSpeed = 0.1f;
     public Camera cam;
     private float prevMagnitude;
     private UIVisibilityScript UIPen;
+    public Timer waitTimer;
+    private bool isAnimalReady;
 
     private void Awake()
     {
@@ -32,7 +34,7 @@ public class CameraMovement : MonoBehaviour
             }
             var difference = magnitude - prevMagnitude;
             prevMagnitude = magnitude;
-            CameraZoom(difference * zoomSpeed);
+            CameraZoom(-(difference * zoomSpeed));
         };
     }
 
@@ -68,10 +70,41 @@ public class CameraMovement : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit, 1000f))
         {
-            if(hit.collider.tag == "pen")
+            if (isAnimalReady)
+            {
+                if (hit.collider.tag == "pen")
+                {
+                    UIPen = hit.collider.GetComponent<UIVisibilityScript>();
+                    waitTimer = hit.collider.GetComponent<Timer>();
+                    isAnimalReady = false;
+                    waitTimer.SetReady(false);
+                    Debug.Log("Collected");
+                }
+            }
+            if (hit.collider.name == "Feed")
+            {
+                Debug.Log("feed");
+                waitTimer.StartRoutine();
+            }
+            else
+            {
+                if (UIPen != null)
+                {
+                    UIPen.Removals();
+                }
+            }
+            if (hit.collider.tag == "pen")
             {
                 UIPen = hit.collider.GetComponent<UIVisibilityScript>();
+                waitTimer = hit.collider.GetComponent<Timer>();
                 UIPen.ShowUI();
+                isAnimalReady = waitTimer.isReady();
+                if (isAnimalReady)
+                {
+                        isAnimalReady = false;
+                        waitTimer.SetReady(false);
+                        Debug.Log("Collected");
+                }
             }
 
         }
@@ -80,7 +113,7 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 move = new Vector3(delta.x, 0f, delta.y) * speed;
+        Vector3 move = new Vector3(-delta.x, 0f, -delta.y) * speed;
 
         transform.Translate(move, Space.World);
     }

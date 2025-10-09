@@ -13,9 +13,7 @@ public class UIVisibilityScript : MonoBehaviour
 
     private void Awake()
     {
-        mInput = new MobileInput();
 
-        mInput.Game.Press.performed += screenTap;
     }
 
     // Update is called once per frame
@@ -24,8 +22,9 @@ public class UIVisibilityScript : MonoBehaviour
         
     }
 
-    private void screenTap(InputAction.CallbackContext context)
+    public void Removals()
     {
+        Debug.Log("Removal");
         canvas.SetActive(false);
     }
 
