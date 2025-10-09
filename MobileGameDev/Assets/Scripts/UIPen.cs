@@ -12,6 +12,9 @@ public class UIPen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.LookAt(cam.transform.position);
+        Vector3 targetPos = cam.transform.position;
+        targetPos.x = transform.position.x;
+        transform.LookAt(targetPos);
+
     }
 }

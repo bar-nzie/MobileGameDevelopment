@@ -12,6 +12,8 @@ public class CameraMovement : MonoBehaviour
     private UIVisibilityScript UIPen;
     public Timer waitTimer;
     private bool isAnimalReady;
+    public CollectionScript collect;
+
 
     private void Awake()
     {
@@ -70,21 +72,25 @@ public class CameraMovement : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit, 1000f))
         {
-            if (isAnimalReady)
+            if (waitTimer != null)
             {
-                if (hit.collider.tag == "pen")
+                isAnimalReady = waitTimer.isReady();
+            }
+            if (isAnimalReady)
+            { 
+                if(hit.collider.name == "Collect")
                 {
-                    UIPen = hit.collider.GetComponent<UIVisibilityScript>();
-                    waitTimer = hit.collider.GetComponent<Timer>();
                     isAnimalReady = false;
                     waitTimer.SetReady(false);
-                    Debug.Log("Collected");
+                    collect.Collect();
+                    collect.NotReady();
                 }
             }
             if (hit.collider.name == "Feed")
             {
                 Debug.Log("feed");
                 waitTimer.StartRoutine();
+                UIPen.Removals();
             }
             else
             {
@@ -97,16 +103,14 @@ public class CameraMovement : MonoBehaviour
             {
                 UIPen = hit.collider.GetComponent<UIVisibilityScript>();
                 waitTimer = hit.collider.GetComponent<Timer>();
-                UIPen.ShowUI();
+                collect = hit.collider.GetComponent<CollectionScript>();
                 isAnimalReady = waitTimer.isReady();
-                if (isAnimalReady)
+                if (!isAnimalReady)
                 {
-                        isAnimalReady = false;
-                        waitTimer.SetReady(false);
-                        Debug.Log("Collected");
+                    UIPen.ShowUI();
                 }
             }
-
+            
         }
     }
 
@@ -114,6 +118,11 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         Vector3 move = new Vector3(-delta.x, 0f, -delta.y) * speed;
+
+        if (isAnimalReady)
+        {
+            collect.ReadyToCollect();
+        }
 
         transform.Translate(move, Space.World);
     }
