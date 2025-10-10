@@ -6,6 +6,7 @@ public class Timer : MonoBehaviour
 {
     public GameObject canvas;
     public Image fillBar;
+    public GameObject readyImage;
     private float lengthOfWait = 20f;
     private bool ready;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
