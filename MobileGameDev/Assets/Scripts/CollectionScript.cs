@@ -3,6 +3,7 @@ using UnityEngine;
 public class CollectionScript : MonoBehaviour
 {
     public GameObject canvas;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
