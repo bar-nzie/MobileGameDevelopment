@@ -10,10 +10,9 @@ public class CameraMovement : MonoBehaviour
     public Camera cam;
     private float prevMagnitude;
     private UIVisibilityScript UIPen;
-    public Timer waitTimer;
-    private bool isAnimalReady;
+    public Pass waitTimer;
     public CollectionScript collect;
-
+    public HayButton HayButton;
 
     private void Awake()
     {
@@ -72,45 +71,30 @@ public class CameraMovement : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit, 1000f))
         {
-            if (waitTimer != null)
+            if (hit.collider.tag == "Feed")
             {
-                isAnimalReady = waitTimer.isReady();
+                waitTimer = hit.collider.GetComponent<Pass>();
+                waitTimer.StartTimer();
             }
-            if (isAnimalReady)
-            { 
-                if(hit.collider.name == "Collect")
-                {
-                    isAnimalReady = false;
-                    waitTimer.SetReady(false);
-                    collect.Collect();
-                    collect.NotReady();
-                }
-            }
-            if (hit.collider.name == "Feed")
+            if (hit.collider.tag == "Collect")
             {
-                Debug.Log("feed");
-                waitTimer.StartRoutine();
+                collect = hit.collider.GetComponent<CollectionScript>();
+                collect.Collect();
+            }
+            if(hit.collider.tag == "hay")
+            {
+                HayButton = hit.collider.GetComponent<HayButton>();
+                HayButton.Collect();
+            }
+            if (UIPen != null)
+            {
                 UIPen.Removals();
-            }
-            else
-            {
-                if (UIPen != null)
-                {
-                    UIPen.Removals();
-                }
             }
             if (hit.collider.tag == "pen")
             {
                 UIPen = hit.collider.GetComponent<UIVisibilityScript>();
-                waitTimer = hit.collider.GetComponent<Timer>();
-                collect = hit.collider.GetComponent<CollectionScript>();
-                isAnimalReady = waitTimer.isReady();
-                if (!isAnimalReady)
-                {
-                    UIPen.ShowUI();
-                }
+                UIPen.ShowUI();
             }
-            
         }
     }
 
@@ -118,11 +102,6 @@ public class CameraMovement : MonoBehaviour
     void Update()
     {
         Vector3 move = new Vector3(-delta.x, 0f, -delta.y) * speed;
-
-        if (isAnimalReady)
-        {
-            collect.ReadyToCollect();
-        }
 
         transform.Translate(move, Space.World);
     }

@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class UIVisibilityScript : MonoBehaviour
 {
     private MobileInput mInput;
     public GameObject canvas;
+    private bool feeding;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -22,6 +24,16 @@ public class UIVisibilityScript : MonoBehaviour
         
     }
 
+    public void SetTrue()
+    {
+        feeding = true;
+    }
+
+    public void SetFalse()
+    {
+        feeding = false;
+    }
+
     public void Removals()
     {
         Debug.Log("Removal");
@@ -30,6 +42,9 @@ public class UIVisibilityScript : MonoBehaviour
 
     public void ShowUI()
     {
-        canvas.SetActive(true);
+        if (!feeding)
+        {
+            canvas.SetActive(true);
+        }
     }
 }

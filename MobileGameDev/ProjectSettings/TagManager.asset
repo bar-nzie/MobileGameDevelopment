@@ -6,6 +6,9 @@ TagManager:
   tags:
   - pen
   - Egg
+  - Feed
+  - Collect
+  - hay
   layers:
   - Default
   - TransparentFX
