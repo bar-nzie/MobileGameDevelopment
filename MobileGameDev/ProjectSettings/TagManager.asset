@@ -10,6 +10,7 @@ TagManager:
   - Collect
   - hay
   - Minigame
+  - Move
   layers:
   - Default
   - TransparentFX
