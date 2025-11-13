@@ -9,11 +9,12 @@ TagManager:
   - Feed
   - Collect
   - hay
+  - Minigame
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Ground
   - Water
   - UI
   - 

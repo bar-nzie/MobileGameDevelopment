@@ -340,7 +340,7 @@ MonoBehaviour:
   canvas: {fileID: 717893418350101448}
   fillBar: {fileID: 4811827641996797150}
   timeLeft: {fileID: 395014986454402384}
-  readyImage: {fileID: 8749770396105673022}
+  readyImage: {fileID: 5264362161899990534}
   visibility: {fileID: 5494446412913128496}
   cost: 3
   hay: 0
@@ -1826,6 +1826,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collection
       objectReference: {fileID: 0}
+    - target: {fileID: 671724967738635974, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
+      propertyPath: isPig
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 671724967738635974, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
+      propertyPath: locked
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3489154667395553568, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
       propertyPath: m_TagString
       value: Collect
@@ -1927,6 +1935,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 7980115009563387746, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
   m_PrefabInstance: {fileID: 5262063081166049310}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &5264362161899990534 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2356256498515480, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
+  m_PrefabInstance: {fileID: 5262063081166049310}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8749770396105673022 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3489154667395553568, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
@@ -1944,7 +1957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b281dfc9775588e4ab5c3f1e6c13a914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 8749770396105673022}
+  canvas: {fileID: 5264362161899990534}
   UI: {fileID: 0}
   storage: {fileID: 0}
   value: 3
@@ -2246,6 +2259,14 @@ PrefabInstance:
     - target: {fileID: 7980115009563387746, guid: d8675543ef6d1f34e908d049a9224013, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227613720941732467, guid: d8675543ef6d1f34e908d049a9224013, type: 3}
+      propertyPath: obj
+      value: 
+      objectReference: {fileID: 5302532292565997714}
+    - target: {fileID: 8227613720941732467, guid: d8675543ef6d1f34e908d049a9224013, type: 3}
+      propertyPath: isPig
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

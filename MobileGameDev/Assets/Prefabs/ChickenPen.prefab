@@ -281,7 +281,7 @@ MonoBehaviour:
   canvas: {fileID: 295407093287405723}
   fillBar: {fileID: 5703823024302616461}
   timeLeft: {fileID: 618232730404883971}
-  readyImage: {fileID: 1072708657353545367}
+  readyImage: {fileID: 4503791460308398511}
   visibility: {fileID: 2060270469967697293}
   cost: 5
   hay: 0
@@ -1844,6 +1844,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Collection
       objectReference: {fileID: 0}
+    - target: {fileID: 671724967738635974, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
+      propertyPath: isChickens
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3489154667395553568, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
       propertyPath: m_TagString
       value: Collect
@@ -1957,11 +1961,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b281dfc9775588e4ab5c3f1e6c13a914, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 1072708657353545367}
+  canvas: {fileID: 4503791460308398511}
   UI: {fileID: 0}
   storage: {fileID: 0}
   value: 5
   visibility: {fileID: 2060270469967697293}
+--- !u!1 &4503791460308398511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2356256498515480, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
+  m_PrefabInstance: {fileID: 4506116925445197751}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &5780336218235513045 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 7980115009563387746, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
@@ -3650,6 +3659,14 @@ PrefabInstance:
     - target: {fileID: 7980115009563387746, guid: d8675543ef6d1f34e908d049a9224013, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8227613720941732467, guid: d8675543ef6d1f34e908d049a9224013, type: 3}
+      propertyPath: obj
+      value: 
+      objectReference: {fileID: 5302532292565997714}
+    - target: {fileID: 8227613720941732467, guid: d8675543ef6d1f34e908d049a9224013, type: 3}
+      propertyPath: isChicken
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

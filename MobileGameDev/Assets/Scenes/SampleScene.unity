@@ -339,7 +339,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 255105914}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 330585549}
+        m_TargetAssemblyTypeName: Placement, Assembly-CSharp
+        m_MethodName: StartPlacementCow
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &255105914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -391,7 +403,8 @@ GameObject:
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
   - component: {fileID: 330585548}
-  m_Layer: 0
+  - component: {fileID: 330585549}
+  m_Layer: 3
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -532,6 +545,29 @@ MonoBehaviour:
   waitTimer: {fileID: 0}
   collect: {fileID: 0}
   HayButton: {fileID: 0}
+  minigame: {fileID: 0}
+--- !u!114 &330585549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330585543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa21a253c7dae147bc8d55d507ad5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlacementPrefab: {fileID: 5336156616982755611, guid: bca4b615044a580488abad6527850810, type: 3}
+  chickenPen: {fileID: 5302532292565997714, guid: 5c91156500fda0a4c99d3b3e23a0eed8, type: 3}
+  cowPen: {fileID: 5302532292565997714, guid: e5d4f476b0a227f4ea059082c944b804, type: 3}
+  pigPen: {fileID: 5302532292565997714, guid: d93639063feeba44587399dc45956a75, type: 3}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 8
+  validColor: {r: 1, g: 1, b: 1, a: 1}
+  invalidColor: {r: 1, g: 0, b: 0, a: 1}
+  cam: {fileID: 330585548}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1189,7 +1225,7 @@ GameObject:
   - component: {fileID: 942121436}
   - component: {fileID: 942121435}
   - component: {fileID: 942121434}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1368,7 +1404,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 953683591}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 330585549}
+        m_TargetAssemblyTypeName: Placement, Assembly-CSharp
+        m_MethodName: StartPlacementChicken
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &953683591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1489,7 +1537,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 987629282}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 330585549}
+        m_TargetAssemblyTypeName: Placement, Assembly-CSharp
+        m_MethodName: StartPlacementPig
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &987629282
 MonoBehaviour:
   m_ObjectHideFlags: 0

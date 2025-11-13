@@ -13,6 +13,9 @@ public class CameraMovement : MonoBehaviour
     public Pass waitTimer;
     public CollectionScript collect;
     public HayButton HayButton;
+    public Minigame minigame;
+    private bool canMove = true;
+    public Moving moving;
 
     private void Awake()
     {
@@ -81,6 +84,16 @@ public class CameraMovement : MonoBehaviour
                 collect = hit.collider.GetComponent<CollectionScript>();
                 collect.Collect();
             }
+            if(hit.collider.tag == "Minigame")
+            {
+                minigame = hit.collider.GetComponent<Minigame>();
+                minigame.StartMinigame();
+            }
+            if(hit.collider.tag == "Move")
+            {
+                moving = hit.collider.GetComponent<Moving>();
+                moving.OnMove();
+            }
             if(hit.collider.tag == "hay")
             {
                 HayButton = hit.collider.GetComponent<HayButton>();
@@ -101,9 +114,18 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 move = new Vector3(-delta.x, 0f, -delta.y) * speed;
+        if (canMove)
+        {
+            Vector3 move = new Vector3(-delta.x, 0f, -delta.y) * speed;
 
-        transform.Translate(move, Space.World);
+            transform.Translate(move, Space.World);
+
+        }
+    }
+
+    public void SetCanMove (bool can)
+    {
+        canMove = can;
     }
 
     private void CameraZoom(float increment) => Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView + increment, 30, 60);

@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Tilting : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Tilting : MonoBehaviour
     public GameObject eggs;
     private float time;
     private float cooldown = 2f;
+    private float count;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -20,6 +22,11 @@ public class Tilting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (count >=10)
+        {
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("SampleScene"));
+            SceneManager.UnloadSceneAsync("Catch the eggs");
+        }
         Debug.Log(Input.gyro.attitude);
         Debug.Log(isPositive);
         Debug.Log(Input.gyro.rotationRateUnbiased);
@@ -30,22 +37,22 @@ public class Tilting : MonoBehaviour
         {
             if (isPositive)
             {
-                if (zValue > 0.5)
+                if (zValue > 0.6)
                 {
                     basket.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
                 }
-                if (zValue < 0.5)
+                if (zValue < 0.4)
                 {
                     basket.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
                 }
             }
             if (!isPositive)
             {
-                if (zValue > -0.5)
+                if (zValue > -0.4)
                 {
                     basket.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
                 }
-                if (zValue < -0.5)
+                if (zValue < -0.6)
                 {
                     basket.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
                 }
@@ -57,7 +64,7 @@ public class Tilting : MonoBehaviour
         if (time > cooldown)
         {
             time = 0;
-            Vector3 spawnPos = new Vector3(Random.Range(-8f, 8f), 5f, 0f);
+            Vector3 spawnPos = new Vector3(Random.Range(-108f, -92f), 5f, 0f);
             Instantiate(eggs, spawnPos, Quaternion.identity);
         }
 
@@ -70,6 +77,7 @@ public class Tilting : MonoBehaviour
         {
             Destroy(other.gameObject);
             Debug.Log("Destroyed");
+            count++;
         }
     }
 
