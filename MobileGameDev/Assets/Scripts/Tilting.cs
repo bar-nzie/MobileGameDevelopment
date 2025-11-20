@@ -64,7 +64,7 @@ public class Tilting : MonoBehaviour
         if (time > cooldown)
         {
             time = 0;
-            Vector3 spawnPos = new Vector3(Random.Range(-108f, -92f), 5f, 0f);
+            Vector3 spawnPos = new Vector3(Random.Range(-408f, -392f), 5f, 0f);
             Instantiate(eggs, spawnPos, Quaternion.identity);
         }
 

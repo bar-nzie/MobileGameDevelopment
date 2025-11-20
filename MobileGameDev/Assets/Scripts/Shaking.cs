@@ -12,7 +12,7 @@ public class Shaking : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (elapsed > 6)
+        if (elapsed > 2)
         {
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("SampleScene"));
             SceneManager.UnloadSceneAsync("MilkTheCow");

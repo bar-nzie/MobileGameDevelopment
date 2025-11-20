@@ -2229,6 +2229,10 @@ PrefabInstance:
       propertyPath: isCow
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 671724967738635974, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
+      propertyPath: collect
+      value: 
+      objectReference: {fileID: 7926635903383523124}
     - target: {fileID: 3489154667395553568, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
       propertyPath: m_TagString
       value: Collect

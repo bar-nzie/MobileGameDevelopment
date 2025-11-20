@@ -8,10 +8,19 @@ public class Minigame : MonoBehaviour
     public bool isChickens = false;
     public bool isPig = false;
     public GameObject canvas;
+    public CollectionScript collect;
+    public GameObject ui;
+
+    private void Start()
+    {
+        ui = GameObject.Find("MainUI");
+    }
     public void StartMinigame()
     {
         if (!locked)
         {
+            ui.SetActive(false);
+            collect.collectBoost();
             if (isChickens)
             {
                 SceneManager.LoadSceneAsync("Catch the eggs", LoadSceneMode.Additive);

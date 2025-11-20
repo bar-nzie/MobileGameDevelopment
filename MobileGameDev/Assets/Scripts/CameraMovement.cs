@@ -16,10 +16,12 @@ public class CameraMovement : MonoBehaviour
     public Minigame minigame;
     private bool canMove = true;
     public Moving moving;
+    public SellScript sell;
+    public GameObject ui;
 
     private void Awake()
     {
-        
+        Input.gyro.enabled = true;
         mInput = new MobileInput();
 
         mInput.Game.Zoom.performed += ctx => CameraZoom(ctx.ReadValue<Vector2>().y * zoomSpeed);
@@ -74,6 +76,10 @@ public class CameraMovement : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit, 1000f))
         {
+            if (hit.collider.tag == "Ground")
+            {
+                ui.SetActive(true);
+            }
             if (hit.collider.tag == "Feed")
             {
                 waitTimer = hit.collider.GetComponent<Pass>();
@@ -88,6 +94,11 @@ public class CameraMovement : MonoBehaviour
             {
                 minigame = hit.collider.GetComponent<Minigame>();
                 minigame.StartMinigame();
+            }
+            if (hit.collider.tag == "Shop")
+            {
+                sell = hit.collider.GetComponent<SellScript>();
+                sell.onSell();
             }
             if(hit.collider.tag == "Move")
             {

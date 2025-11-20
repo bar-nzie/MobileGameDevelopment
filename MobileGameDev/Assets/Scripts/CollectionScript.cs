@@ -23,4 +23,12 @@ public class CollectionScript : MonoBehaviour
         visibility.SetFalse();
         canvas.SetActive(false);
     }
+
+    public void collectBoost()
+    {
+        Debug.Log("Collected");
+        storage.IncreaseStorage(value * 2);
+        visibility.SetFalse();
+        canvas.SetActive(false);
+    }
 }

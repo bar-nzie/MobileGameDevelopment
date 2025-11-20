@@ -11,6 +11,8 @@ TagManager:
   - hay
   - Minigame
   - Move
+  - Shop
+  - Ground
   layers:
   - Default
   - TransparentFX

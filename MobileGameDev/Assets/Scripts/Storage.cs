@@ -6,8 +6,10 @@ public class Storage : MonoBehaviour
     public GameObject UI;
     public TextMeshProUGUI storage;
     public TextMeshProUGUI hay;
+    public TextMeshProUGUI money;
     private int value;
     private int hayValue = 20;
+    private int moneyValue = 0;
 
     private void Start()
     {
@@ -19,6 +21,15 @@ public class Storage : MonoBehaviour
     public void IncreaseStorage(int add)
     {
         value += add;
+
+        storage.text = "Storage: " + value.ToString();
+    }
+
+    public int RetrieveStorage() { return value; }
+
+    public void SetStorageZero()
+    {
+        value = 0;
 
         storage.text = "Storage: " + value.ToString();
     }
@@ -35,5 +46,11 @@ public class Storage : MonoBehaviour
         hayValue += add;
 
         hay.text = "Hay: " + hayValue.ToString();
+    }
+
+    public void SetMoney(int add)
+    {
+        moneyValue += add;
+        money.text = "Money: " + moneyValue.ToString();
     }
 }
