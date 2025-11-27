@@ -18,6 +18,9 @@ public class CameraMovement : MonoBehaviour
     public Moving moving;
     public SellScript sell;
     public GameObject ui;
+    private bool isPaused;
+    public RewardedAdsButton rewardedAds;
+    public InterstitialAd interstitialAd;
 
     private void Awake()
     {
@@ -54,70 +57,80 @@ public class CameraMovement : MonoBehaviour
         mInput.Disable();
     }
 
+    public void TogglePause()
+    {
+        isPaused = !isPaused;
+    }
+
     private void screenTap(InputAction.CallbackContext context)
     {
-        Vector2 screenPos;
-        if (Mouse.current != null && Mouse.current.leftButton.isPressed)
+        if (!isPaused)
         {
-            screenPos = Mouse.current.position.ReadValue();
-        }
-        else if(Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
-        {
-            screenPos = Touchscreen.current.position.ReadValue();
-        }
-        else
-        {
-            return;
-        }
+            rewardedAds.LoadAd();
+            interstitialAd.LoadAd();
+            Vector2 screenPos;
+            if (Mouse.current != null && Mouse.current.leftButton.isPressed)
+            {
+                screenPos = Mouse.current.position.ReadValue();
+            }
+            else if (Touchscreen.current != null && Touchscreen.current.primaryTouch.press.isPressed)
+            {
+                screenPos = Touchscreen.current.position.ReadValue();
+            }
+            else
+            {
+                return;
+            }
 
-        Ray ray = cam.ScreenPointToRay(screenPos);
-        RaycastHit hit;
-        Debug.DrawRay(ray.origin, ray.direction * 1000f, Color.red, 5f);
+            Ray ray = cam.ScreenPointToRay(screenPos);
+            RaycastHit hit;
+            Debug.DrawRay(ray.origin, ray.direction * 1000f, Color.red, 5f);
 
-        if(Physics.Raycast(ray, out hit, 1000f))
-        {
-            if (hit.collider.tag == "Ground")
+            if (Physics.Raycast(ray, out hit, 1000f))
             {
-                ui.SetActive(true);
-            }
-            if (hit.collider.tag == "Feed")
-            {
-                waitTimer = hit.collider.GetComponent<Pass>();
-                waitTimer.StartTimer();
-            }
-            if (hit.collider.tag == "Collect")
-            {
-                collect = hit.collider.GetComponent<CollectionScript>();
-                collect.Collect();
-            }
-            if(hit.collider.tag == "Minigame")
-            {
-                minigame = hit.collider.GetComponent<Minigame>();
-                minigame.StartMinigame();
-            }
-            if (hit.collider.tag == "Shop")
-            {
-                sell = hit.collider.GetComponent<SellScript>();
-                sell.onSell();
-            }
-            if(hit.collider.tag == "Move")
-            {
-                moving = hit.collider.GetComponent<Moving>();
-                moving.OnMove();
-            }
-            if(hit.collider.tag == "hay")
-            {
-                HayButton = hit.collider.GetComponent<HayButton>();
-                HayButton.Collect();
-            }
-            if (UIPen != null)
-            {
-                UIPen.Removals();
-            }
-            if (hit.collider.tag == "pen")
-            {
-                UIPen = hit.collider.GetComponent<UIVisibilityScript>();
-                UIPen.ShowUI();
+                if (hit.collider.tag == "Ground")
+                {
+                    ui.SetActive(true);
+                }
+                if (hit.collider.tag == "Feed")
+                {
+                    waitTimer = hit.collider.GetComponent<Pass>();
+                    waitTimer.StartTimer();
+                }
+                if (hit.collider.tag == "Collect")
+                {
+                    collect = hit.collider.GetComponent<CollectionScript>();
+                    collect.Collect();
+                }
+                if (hit.collider.tag == "Minigame")
+                {
+                    minigame = hit.collider.GetComponent<Minigame>();
+                    minigame.StartMinigame();
+                }
+                if (hit.collider.tag == "Shop")
+                {
+                    sell = hit.collider.GetComponent<SellScript>();
+                    sell.onSell();
+                }
+                if (hit.collider.tag == "Move")
+                {
+                    moving = hit.collider.GetComponent<Moving>();
+                    moving.OnMove();
+                }
+                if (hit.collider.tag == "hay")
+                {
+                    HayButton = hit.collider.GetComponent<HayButton>();
+                    HayButton.Collect();
+                }
+                if (UIPen != null)
+                {
+                    UIPen.Removals();
+                }
+                if (hit.collider.tag == "pen")
+                {
+                    UIPen = hit.collider.GetComponent<UIVisibilityScript>();
+                    UIPen.ShowUI();
+                }
             }
         }
     }
@@ -125,7 +138,7 @@ public class CameraMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (canMove)
+        if (canMove && !isPaused)
         {
             Vector3 move = new Vector3(-delta.x, 0f, -delta.y) * speed;
 
@@ -137,6 +150,11 @@ public class CameraMovement : MonoBehaviour
     public void SetCanMove (bool can)
     {
         canMove = can;
+    }
+
+    public void SetisPaused(bool can)
+    {
+        isPaused = can;
     }
 
     private void CameraZoom(float increment) => Camera.main.fieldOfView = Mathf.Clamp(Camera.main.fieldOfView + increment, 30, 60);

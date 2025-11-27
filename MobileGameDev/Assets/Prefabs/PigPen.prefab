@@ -1966,6 +1966,12 @@ MonoBehaviour:
   storage: {fileID: 0}
   value: 3
   visibility: {fileID: 5494446412913128496}
+  ground: {fileID: 0}
+  interstitialAd: {fileID: 0}
+  locked: 0
+  isCow: 0
+  isChickens: 0
+  isPig: 1
 --- !u!1001 &5265960285728536989
 PrefabInstance:
   m_ObjectHideFlags: 0

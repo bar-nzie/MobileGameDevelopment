@@ -2480,6 +2480,12 @@ MonoBehaviour:
   storage: {fileID: 0}
   value: 5
   visibility: {fileID: 2060270469967697293}
+  ground: {fileID: 0}
+  interstitialAd: {fileID: 0}
+  locked: 0
+  isCow: 0
+  isChickens: 1
+  isPig: 0
 --- !u!1 &4503791460308398511 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2356256498515480, guid: 3a119d0fba9612a43a12c7dcb4b5afea, type: 3}
