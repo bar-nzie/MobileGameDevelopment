@@ -16,11 +16,12 @@ public class CameraMovement : MonoBehaviour
     public Minigame minigame;
     private bool canMove = true;
     public Moving moving;
-    public SellScript sell;
     public GameObject ui;
     private bool isPaused;
     public RewardedAdsButton rewardedAds;
     public InterstitialAd interstitialAd;
+    public GameObject center;
+    public GameObject shop;
 
     private void Awake()
     {
@@ -109,8 +110,9 @@ public class CameraMovement : MonoBehaviour
                 }
                 if (hit.collider.tag == "Shop")
                 {
-                    sell = hit.collider.GetComponent<SellScript>();
-                    sell.onSell();
+                    center.SetActive(false);
+                    shop.SetActive(true);
+                    isPaused = true;
                 }
                 if (hit.collider.tag == "Move")
                 {
