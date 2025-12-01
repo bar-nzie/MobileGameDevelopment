@@ -13,6 +13,7 @@ TagManager:
   - Move
   - Shop
   - Ground
+  - Buy
   layers:
   - Default
   - TransparentFX

@@ -49,6 +49,11 @@ public class Storage : MonoBehaviour
     public Button cowPlace;
     public Button woolPlace;
     public Button fieldPlace;
+    //Amount text
+    public TextMeshProUGUI chicken;
+    public TextMeshProUGUI cow;
+    public TextMeshProUGUI sheep;
+    public TextMeshProUGUI field;
 
     private void Start()
     {
@@ -234,6 +239,7 @@ public class Storage : MonoBehaviour
         moneyValue -= 150;
         money.text = "Money: " + moneyValue.ToString();
         chickenAmount++;
+        chicken.text = chickenAmount.ToString();
     }
 
     public void BuyCow()
@@ -241,6 +247,7 @@ public class Storage : MonoBehaviour
         moneyValue -= 320;
         money.text = "Money: " + moneyValue.ToString();
         cowAmount++;
+        cow.text = cowAmount.ToString();
     }
 
     public void BuySheep()
@@ -248,26 +255,39 @@ public class Storage : MonoBehaviour
         moneyValue -= 480;
         money.text = "Money: " + moneyValue.ToString();
         woolAmount++;
+        sheep.text = woolAmount.ToString();
+    }
+    
+    public void BuyField()
+    {
+        moneyValue -= 50;
+        money.text = "Money: " + moneyValue.ToString();
+        fieldAmount++;
+        field.text = fieldAmount.ToString();
     }
 
     //Placing Pens
     public void PlaceSheep()
     {
         woolAmount--;
+        sheep.text = woolAmount.ToString();
     }
 
     public void PlaceChicken()
     {
         chickenAmount--;
+        chicken.text = chickenAmount.ToString();
     }
 
     public void PlaceCow()
     {
         cowAmount--;
+        cow.text = cowAmount.ToString();
     }
 
     public void PlaceField()
     {
-
+        fieldAmount--;
+        field.text = fieldAmount.ToString();
     }
 }

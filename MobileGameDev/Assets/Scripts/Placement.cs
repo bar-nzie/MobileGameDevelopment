@@ -23,6 +23,12 @@ public class Placement : MonoBehaviour
     public CameraMovement cam;
     private GameObject toDestroy;
 
+    private bool isChicken = false;
+    private bool isCow = false;
+    private bool isSheep = false;
+    private bool isField = false;
+    public Storage storage;
+
 
     // Update is called once per frame
     void Update()
@@ -50,10 +56,18 @@ public class Placement : MonoBehaviour
         spawnTime = Time.time;
         cam.SetCanMove(false);
         desiredObject = chickenPen;
+        isChicken = true;
+        isCow = false;
+        isSheep = false;
+        isField = false;
     }
 
     public void StartPlacementCow()
     {
+        isChicken = false;
+        isCow = true;
+        isSheep = false;
+        isField = false;
         if (isPlacing) return;
         isPlacing = true;
         currentPlacement = Instantiate(PlacementPrefab);
@@ -66,6 +80,10 @@ public class Placement : MonoBehaviour
 
     public void StartPlacementPig()
     {
+        isChicken = false;
+        isCow = false;
+        isSheep = true;
+        isField = false;
         if (isPlacing) return;
         isPlacing = true;
         currentPlacement = Instantiate(PlacementPrefab);
@@ -78,6 +96,10 @@ public class Placement : MonoBehaviour
 
     public void StartPlacementHay()
     {
+        isChicken = false;
+        isCow = false;
+        isSheep = false;
+        isField = true;
         if (isPlacing) return;
         isPlacing = true;
         currentPlacement = Instantiate(PlacementPrefab2);
@@ -90,6 +112,10 @@ public class Placement : MonoBehaviour
 
     public void StartMovementHay(GameObject hayMove)
     {
+        isChicken = false;
+        isCow = false;
+        isSheep = false;
+        isField = false;
         if (isPlacing) return;
         isPlacing = true;
         currentPlacement = Instantiate(PlacementPrefab2);
@@ -103,6 +129,10 @@ public class Placement : MonoBehaviour
 
     public void StartMovementChicken(GameObject hayMove)
     {
+        isChicken = false;
+        isCow = false;
+        isSheep = false;
+        isField = false;
         if (isPlacing) return;
         isPlacing = true;
         currentPlacement = Instantiate(PlacementPrefab);
@@ -116,6 +146,10 @@ public class Placement : MonoBehaviour
 
     public void StartMovementCow(GameObject hayMove)
     {
+        isChicken = false;
+        isCow = false;
+        isSheep = false;
+        isField = false;
         if (isPlacing) return;
         isPlacing = true;
         currentPlacement = Instantiate(PlacementPrefab);
@@ -129,6 +163,10 @@ public class Placement : MonoBehaviour
 
     public void StartMovementPig(GameObject hayMove)
     {
+        isChicken = false;
+        isCow = false;
+        isSheep = false;
+        isField = false;
         if (isPlacing) return;
         isPlacing = true;
         currentPlacement = Instantiate(PlacementPrefab);
@@ -187,6 +225,10 @@ public class Placement : MonoBehaviour
     {
         Vector3 place = new Vector3(currentPlacement.transform.position.x, currentPlacement.transform.position.y + 0.4f, currentPlacement.transform.position.z);
         Instantiate(desiredObject, place, Quaternion.identity);
+        if (isChicken) storage.PlaceChicken();
+        if (isCow) storage.PlaceCow();
+        if (isSheep) storage.PlaceSheep();
+        if (isField) storage.PlaceField();
         Destroy(currentPlacement);
         Destroy(toDestroy);
         currentPlacement = null;
