@@ -22,6 +22,7 @@ public class CameraMovement : MonoBehaviour
     public InterstitialAd interstitialAd;
     public GameObject center;
     public GameObject shop;
+    public GameObject buy;
 
     private void Awake()
     {
@@ -112,6 +113,12 @@ public class CameraMovement : MonoBehaviour
                 {
                     center.SetActive(false);
                     shop.SetActive(true);
+                    isPaused = true;
+                }
+                if (hit.collider.tag == "Buy")
+                {
+                    center.SetActive(false);
+                    buy.SetActive(true);
                     isPaused = true;
                 }
                 if (hit.collider.tag == "Move")

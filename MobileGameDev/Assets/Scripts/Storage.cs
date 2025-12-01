@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class Storage : MonoBehaviour
 {
+    //UI text
     public TextMeshProUGUI storage;
     public TextMeshProUGUI hay;
     public TextMeshProUGUI money;
@@ -16,18 +17,38 @@ public class Storage : MonoBehaviour
     public TextMeshProUGUI woolShop;
     public TextMeshProUGUI hay1;
     public TextMeshProUGUI hay2;
+    //Sell button
     public Button eggSell;
     public Button milkSell;
     public Button woolSell;
     public Button haySell;
+
     public GameObject AD;
+    //Amounts
     private int value;
     private int hayValue = 20;
-    private int moneyValue = 0;
+    private int moneyValue = 3200;
     private int minigameValue = 1;
     private int eggsValue;
     private int milkValue;
     private int woolValue;
+
+    //Buying
+    //Amount bought
+    private int chickenAmount;
+    private int cowAmount;
+    private int fieldAmount;
+    private int woolAmount;
+    //Buy button
+    public Button chickenBuy;
+    public Button cowBuy;
+    public Button woolBuy;
+    public Button fieldBuy;
+    //Place Button
+    public Button chickenPlace;
+    public Button cowPlace;
+    public Button woolPlace;
+    public Button fieldPlace;
 
     private void Start()
     {
@@ -37,6 +58,7 @@ public class Storage : MonoBehaviour
 
     private void Update()
     {
+        //Check if user can watch ad for minigame
         if (minigameValue == 0)
         {
             AD.SetActive(true);
@@ -46,6 +68,7 @@ public class Storage : MonoBehaviour
             AD.SetActive(false);
         }
 
+        //Check if the player has anything to sell
         if (eggsValue == 0)
         {
             eggSell.interactable = false;
@@ -70,6 +93,39 @@ public class Storage : MonoBehaviour
         }
         else haySell.interactable = true;
 
+        //Checks if the user can afford a pen
+        woolBuy.interactable = true;
+        chickenBuy.interactable = true;
+        cowBuy.interactable = true;
+        fieldBuy.interactable = true;
+        if (moneyValue < 480)
+        {
+            woolBuy.interactable = false;
+            if(moneyValue < 320)
+            {
+                cowBuy.interactable = false;
+                if (moneyValue < 150)
+                {
+                    chickenBuy.interactable = false;
+                    if( moneyValue < 50)
+                    {
+                        fieldBuy.interactable = false;
+                    }
+                }
+            }
+        }
+
+        //Checks if user owns any pens
+        if (chickenAmount == 0) chickenPlace.interactable = false;
+        else chickenPlace.interactable= true;
+        if (cowAmount == 0) cowPlace.interactable = false;
+        else cowPlace.interactable= true;
+        if (woolAmount == 0) woolPlace.interactable = false;
+        else woolPlace.interactable= true;
+        if (fieldAmount == 0) fieldPlace.interactable = false;
+        else fieldPlace.interactable= true;
+
+            //Set Storage value
             storage.text = "Storage: " + (hayValue + eggsValue + milkValue + woolValue).ToString() + "/100";
     }
 
@@ -170,5 +226,48 @@ public class Storage : MonoBehaviour
         money.text= "Money: " + moneyValue.ToString();
         hayValue = 0;
         hay.text = hay1.text = hay2.text = hayValue.ToString();
+    }
+
+    //Buying pens
+    public void BuyChicken()
+    {
+        moneyValue -= 150;
+        money.text = "Money: " + moneyValue.ToString();
+        chickenAmount++;
+    }
+
+    public void BuyCow()
+    {
+        moneyValue -= 320;
+        money.text = "Money: " + moneyValue.ToString();
+        cowAmount++;
+    }
+
+    public void BuySheep()
+    {
+        moneyValue -= 480;
+        money.text = "Money: " + moneyValue.ToString();
+        woolAmount++;
+    }
+
+    //Placing Pens
+    public void PlaceSheep()
+    {
+        woolAmount--;
+    }
+
+    public void PlaceChicken()
+    {
+        chickenAmount--;
+    }
+
+    public void PlaceCow()
+    {
+        cowAmount--;
+    }
+
+    public void PlaceField()
+    {
+
     }
 }
