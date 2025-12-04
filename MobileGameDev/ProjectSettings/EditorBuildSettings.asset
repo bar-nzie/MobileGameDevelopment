@@ -15,8 +15,8 @@ EditorBuildSettings:
     path: Assets/Scenes/MilkTheCow.unity
     guid: a9e0536eb6418e3418506ffb1356cceb
   - enabled: 1
-    path: Assets/Scenes/Roll Da Pig.unity
-    guid: 43f4f34062454dd418594d9f4dcfc2c4
+    path: Assets/Scenes/StripTheWool.unity
+    guid: 49ef15f466809d84f99cdfa25c75f408
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
