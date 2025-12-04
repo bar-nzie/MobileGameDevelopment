@@ -17,6 +17,7 @@ public class Storage : MonoBehaviour
     public TextMeshProUGUI woolShop;
     public TextMeshProUGUI hay1;
     public TextMeshProUGUI hay2;
+    public TextMeshProUGUI gems;
     //Sell button
     public Button eggSell;
     public Button milkSell;
@@ -32,6 +33,7 @@ public class Storage : MonoBehaviour
     private int eggsValue;
     private int milkValue;
     private int woolValue;
+    private int gemValue = 5;
 
     //Buying
     //Amount bought
@@ -54,11 +56,18 @@ public class Storage : MonoBehaviour
     public TextMeshProUGUI cow;
     public TextMeshProUGUI sheep;
     public TextMeshProUGUI field;
+    //Premium Button
+    public Button chickenPremium;
+    public Button cowPremium;
+    public Button sheepPremium;
+    public Button fieldPremium;
 
     private void Start()
     {
         hay.text = "Hay: " + hayValue.ToString();
         hay1.text = hay2.text = hayValue.ToString();
+        gems.text = "Gems: " + gemValue.ToString();
+        money.text = "Money: " + moneyValue.ToString();
     }
 
     private void Update()
@@ -115,6 +124,28 @@ public class Storage : MonoBehaviour
                     if( moneyValue < 50)
                     {
                         fieldBuy.interactable = false;
+                    }
+                }
+            }
+        }
+
+        //Premium Check
+        sheepPremium.interactable = true;
+        chickenPremium.interactable = true;
+        cowPremium.interactable = true;
+        fieldPremium.interactable = true;
+        if (gemValue < 5)
+        {
+            sheepPremium.interactable = false;
+            if(gemValue < 3)
+            {
+                cowPremium.interactable = false;
+                if (gemValue < 2)
+                {
+                    chickenPremium.interactable = false;
+                    if( gemValue < 1)
+                    {
+                        fieldPremium.interactable = false;
                     }
                 }
             }
@@ -289,5 +320,44 @@ public class Storage : MonoBehaviour
     {
         fieldAmount--;
         field.text = fieldAmount.ToString();
+    }
+
+    //Buying Premium
+    public void ChickenPremium()
+    {
+        gemValue -= 2;
+        gems.text = "Gems: " + gemValue.ToString();
+        chickenAmount++;
+        chicken.text = chickenAmount.ToString();
+    }
+
+    public void CowPremium()
+    {
+        gemValue -= 3;
+        gems.text = "Gems: " + gemValue.ToString();
+        cowAmount++;
+        cow.text = cowAmount.ToString();
+    }
+
+    public void SheepPremium()
+    {
+        gemValue -= 5;
+        gems.text = "Gems: " + gemValue.ToString();
+        woolAmount++;
+        sheep.text = woolAmount.ToString();
+    }
+
+    public void FieldPremium()
+    {
+        gemValue -= 1;
+        gems.text = "Gems: " + gemValue.ToString();
+        fieldAmount++;
+        field.text = fieldAmount.ToString();
+    }
+
+    public void AddGems()
+    {
+        gemValue += 5;
+        gems.text = "Gems: " + gemValue.ToString();
     }
 }
