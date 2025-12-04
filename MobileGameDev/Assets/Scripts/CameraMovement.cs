@@ -70,6 +70,7 @@ public class CameraMovement : MonoBehaviour
         {
             rewardedAds.LoadAd();
             interstitialAd.LoadAd();
+            
             Vector2 screenPos;
             if (Mouse.current != null && Mouse.current.leftButton.isPressed)
             {
@@ -152,7 +153,10 @@ public class CameraMovement : MonoBehaviour
             Vector3 move = new Vector3(-delta.x, 0f, -delta.y) * speed;
 
             transform.Translate(move, Space.World);
-
+            Vector3 currentPosition = transform.position;
+            currentPosition.x = Mathf.Clamp(currentPosition.x, -50f, 50f); 
+            currentPosition.z = Mathf.Clamp(currentPosition.z, -50f, 50f); 
+            transform.position = currentPosition;
         }
     }
 

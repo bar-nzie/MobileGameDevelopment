@@ -33,7 +33,7 @@ public class Minigame : MonoBehaviour
             }
             if (isPig)
             {
-                SceneManager.LoadSceneAsync("Roll Da Pig", LoadSceneMode.Additive);
+                SceneManager.LoadSceneAsync("Strip The Wool", LoadSceneMode.Additive);
                 canvas.SetActive(false);
             }
         }

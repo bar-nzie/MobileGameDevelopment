@@ -59,6 +59,10 @@ public class Tilting : MonoBehaviour
             }
         }
 
+        Vector3 basketPosition = basket.transform.position;
+        basketPosition.x = Mathf.Clamp(basketPosition.x, -408f, -392f);
+        basket.transform.position = basketPosition;
+
         time += Time.deltaTime;
 
         if (time > cooldown)
