@@ -10,14 +10,18 @@ public class Minigame : MonoBehaviour
     public GameObject canvas;
     public CollectionScript collect;
     public GameObject ui;
+    public Storage storage;
+    int value;
 
     private void Start()
     {
         ui = GameObject.Find("MainUI");
+        storage = ui.GetComponent<Storage>();
     }
     public void StartMinigame()
     {
-        if (!locked)
+        value = storage.GetMinigame();
+        if (!locked && value > 0)
         {
             ui.SetActive(false);
             collect.collectBoost();

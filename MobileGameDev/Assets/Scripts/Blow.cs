@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Blow : MonoBehaviour
 {
@@ -19,9 +20,15 @@ public class Blow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (transform.localScale.x <= 0)
+        {
+            Destroy(gameObject);
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName("SampleScene"));
+            SceneManager.UnloadSceneAsync("StripTheWool");
+        }
         loudness = GetLoudnessFromMic();
         Debug.Log(loudness);
-        if (loudness > 1.5f)
+        if (loudness > 0)
         {
             transform.localScale -= new Vector3(0.1f, 0.1f, 0.1f);
         }

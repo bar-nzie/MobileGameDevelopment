@@ -61,6 +61,9 @@ public class Storage : MonoBehaviour
     public Button cowPremium;
     public Button sheepPremium;
     public Button fieldPremium;
+    //Audio
+    public AudioSource buySound;
+    public AudioSource collectSound;
 
     private void Start()
     {
@@ -217,18 +220,21 @@ public class Storage : MonoBehaviour
     {
         eggsValue += add;
         eggShop.text = eggs.text = eggsValue.ToString();
+        collectSound.Play();
     }
 
     public void IncreaseMilk(int add)
     {
         milkValue += add;
         milkShop.text = milk.text = milkValue.ToString();
+        collectSound.Play();
     }
 
     public void IncreaseWool(int add)
     {
         woolValue += add;
         woolShop.text = wool.text = woolValue.ToString();
+        collectSound.Play();
     }
 
     //Selling
@@ -238,6 +244,7 @@ public class Storage : MonoBehaviour
         money.text = "Money: " + moneyValue.ToString();
         eggsValue = 0;
         eggShop.text = eggs.text = eggsValue.ToString();
+        buySound.Play();
     }
 
     public void SellMilk()
@@ -246,6 +253,7 @@ public class Storage : MonoBehaviour
         money.text = "Money: " + moneyValue.ToString();
         milkValue = 0;
         milkShop.text = milk.text = milkValue.ToString();
+        buySound.Play();
     }
 
     public void SellWool()
@@ -254,6 +262,7 @@ public class Storage : MonoBehaviour
         money.text = "Money: " + moneyValue.ToString();
         woolValue = 0;
         woolShop.text = wool.text = woolValue.ToString();
+        buySound.Play();
     }
 
     public void SellHay()
@@ -262,6 +271,7 @@ public class Storage : MonoBehaviour
         money.text= "Money: " + moneyValue.ToString();
         hayValue = 0;
         hay.text = hay1.text = hay2.text = hayValue.ToString();
+        buySound.Play();
     }
 
     //Buying pens
@@ -271,6 +281,7 @@ public class Storage : MonoBehaviour
         money.text = "Money: " + moneyValue.ToString();
         chickenAmount++;
         chicken.text = chickenAmount.ToString();
+        buySound.Play();
     }
 
     public void BuyCow()
@@ -279,6 +290,7 @@ public class Storage : MonoBehaviour
         money.text = "Money: " + moneyValue.ToString();
         cowAmount++;
         cow.text = cowAmount.ToString();
+        buySound.Play();
     }
 
     public void BuySheep()
@@ -287,6 +299,7 @@ public class Storage : MonoBehaviour
         money.text = "Money: " + moneyValue.ToString();
         woolAmount++;
         sheep.text = woolAmount.ToString();
+        buySound.Play();
     }
     
     public void BuyField()
@@ -295,6 +308,7 @@ public class Storage : MonoBehaviour
         money.text = "Money: " + moneyValue.ToString();
         fieldAmount++;
         field.text = fieldAmount.ToString();
+        buySound.Play();
     }
 
     //Placing Pens
@@ -329,6 +343,7 @@ public class Storage : MonoBehaviour
         gems.text = "Gems: " + gemValue.ToString();
         chickenAmount++;
         chicken.text = chickenAmount.ToString();
+        buySound.Play();
     }
 
     public void CowPremium()
@@ -337,6 +352,7 @@ public class Storage : MonoBehaviour
         gems.text = "Gems: " + gemValue.ToString();
         cowAmount++;
         cow.text = cowAmount.ToString();
+        buySound.Play();
     }
 
     public void SheepPremium()
@@ -345,6 +361,7 @@ public class Storage : MonoBehaviour
         gems.text = "Gems: " + gemValue.ToString();
         woolAmount++;
         sheep.text = woolAmount.ToString();
+        buySound.Play();
     }
 
     public void FieldPremium()
@@ -353,11 +370,13 @@ public class Storage : MonoBehaviour
         gems.text = "Gems: " + gemValue.ToString();
         fieldAmount++;
         field.text = fieldAmount.ToString();
+        buySound.Play();
     }
 
     public void AddGems()
     {
         gemValue += 5;
         gems.text = "Gems: " + gemValue.ToString();
+        buySound.Play();
     }
 }

@@ -11,16 +11,31 @@ public class AnimalMovement : MonoBehaviour
     // Bounce settings
     private float bounceHeight = 0.5f;
     private float bounceSpeed = 10f;
+    public AudioSource sound;
+    float elapsed = 0;
+    int random;
 
     void Start()
     {
         baseY = transform.position.y;
         ChooseRandomPos();
         InvokeRepeating(nameof(ChooseRandomPos), 2f, 2f); // Change target every 2 seconds
+        random = Random.Range(0, 100);
     }
 
     void Update()
     {
+        elapsed += Time.deltaTime;
+        if (elapsed > Random.Range(5, 15))
+        {
+            if ( random <= 10)
+            {
+                Debug.Log("Animal sound");
+                sound.Play();
+            }
+            random = Random.Range(0, 100);
+            elapsed = 0;
+        }
         // Move towards the target position on the XZ plane
         Vector3 targetXZ = new Vector3(moveTo.x, baseY, moveTo.z);
         transform.position = Vector3.MoveTowards(transform.position, targetXZ, Time.deltaTime * speed);
