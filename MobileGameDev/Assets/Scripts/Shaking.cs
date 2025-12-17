@@ -9,11 +9,18 @@ public class Shaking : MonoBehaviour
     public Animator milking;
     private float elapsed;
 
+
+    private void Start()
+    {
+        Vibration.Init();
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (elapsed > 2)
         {
+            Vibration.Vibrate();  
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("SampleScene"));
             SceneManager.UnloadSceneAsync("MilkTheCow");
         }

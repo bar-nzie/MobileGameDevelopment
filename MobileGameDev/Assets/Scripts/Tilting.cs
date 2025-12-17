@@ -12,11 +12,14 @@ public class Tilting : MonoBehaviour
     private float time;
     private float cooldown = 2f;
     private float count;
+    private float initialPos;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Input.gyro.enabled = true;
         StartCoroutine(phoneCheck());
+        Vibration.Init();
+        initialPos = Input.gyro.attitude.z;
     }
 
     // Update is called once per frame
@@ -24,6 +27,7 @@ public class Tilting : MonoBehaviour
     {
         if (count >=10)
         {
+            Vibration.Vibrate();
             SceneManager.SetActiveScene(SceneManager.GetSceneByName("SampleScene"));
             SceneManager.UnloadSceneAsync("Catch the eggs");
         }
@@ -37,25 +41,22 @@ public class Tilting : MonoBehaviour
         {
             if (isPositive)
             {
-                if (zValue > 0.6)
+                if (zValue > (initialPos + 0.1))
                 {
                     basket.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
                 }
-                if (zValue < 0.4)
+                if (zValue < (initialPos - 0.1))
                 {
                     basket.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
                 }
             }
-            if (!isPositive)
+            if (zValue > (initialPos + 0.1))
             {
-                if (zValue > -0.4)
-                {
-                    basket.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
-                }
-                if (zValue < -0.6)
-                {
-                    basket.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
-                }
+                basket.transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+            }
+            if (zValue < (initialPos - 0.1))
+            {
+                basket.transform.Translate(Vector3.left * moveSpeed * Time.deltaTime);
             }
         }
 

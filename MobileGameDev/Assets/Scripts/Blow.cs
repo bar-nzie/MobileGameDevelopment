@@ -10,6 +10,7 @@ public class Blow : MonoBehaviour
     //Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Vibration.Init();
         if (Microphone.devices.Length > 0)
         {
             micDevice = Microphone.devices[0];
@@ -20,6 +21,7 @@ public class Blow : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Vibration.Vibrate();
         if (transform.localScale.x <= 0)
         {
             Destroy(gameObject);

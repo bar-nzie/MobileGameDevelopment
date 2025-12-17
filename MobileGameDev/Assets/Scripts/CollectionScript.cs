@@ -21,6 +21,7 @@ public class CollectionScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
+        Vibration.Init();
         UI = GameObject.Find("MainUI");
         storage = UI.GetComponent<Storage>();
         ground = GameObject.Find("ground");
@@ -29,6 +30,7 @@ public class CollectionScript : MonoBehaviour
 
     public void Collect()
     {
+        Vibration.VibratePop();
         Debug.Log("Collected");
         interstitialAd.ShowAd();
         if (isChickens)

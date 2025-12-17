@@ -67,6 +67,7 @@ public class Storage : MonoBehaviour
 
     private void Start()
     {
+        Vibration.Init();
         hay.text = "Hay: " + hayValue.ToString();
         hay1.text = hay2.text = hayValue.ToString();
         gems.text = "Gems: " + gemValue.ToString();
@@ -277,6 +278,7 @@ public class Storage : MonoBehaviour
     //Buying pens
     public void BuyChicken()
     {
+        Vibration.VibrateNope();
         moneyValue -= 150;
         money.text = "Money: " + moneyValue.ToString();
         chickenAmount++;
@@ -286,6 +288,7 @@ public class Storage : MonoBehaviour
 
     public void BuyCow()
     {
+        Vibration.VibrateNope();
         moneyValue -= 320;
         money.text = "Money: " + moneyValue.ToString();
         cowAmount++;
@@ -295,6 +298,7 @@ public class Storage : MonoBehaviour
 
     public void BuySheep()
     {
+        Vibration.VibrateNope();
         moneyValue -= 480;
         money.text = "Money: " + moneyValue.ToString();
         woolAmount++;
@@ -304,6 +308,7 @@ public class Storage : MonoBehaviour
     
     public void BuyField()
     {
+        Vibration.VibrateNope();
         moneyValue -= 50;
         money.text = "Money: " + moneyValue.ToString();
         fieldAmount++;
