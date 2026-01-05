@@ -11,12 +11,15 @@ public class CollectionScript : MonoBehaviour
     public UIVisibilityScript visibility;
     public GameObject ground;
     public InterstitialAd interstitialAd;
+    public GameObject IAP;
+    public IAPFarmHero nomore;
 
     public bool locked = false;
     public bool isCow = false;
     public bool isChickens = false;
     public bool isPig = false;
 
+    public bool noads = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -26,13 +29,24 @@ public class CollectionScript : MonoBehaviour
         storage = UI.GetComponent<Storage>();
         ground = GameObject.Find("ground");
         interstitialAd = ground.GetComponent<InterstitialAd>();
+        IAP = GameObject.Find("MainUI");
+        nomore = IAP.GetComponent<IAPFarmHero>();
+    }
+
+    private void Update()
+    {
+        noads = nomore.SetNoads();
     }
 
     public void Collect()
     {
         Vibration.VibratePop();
         Debug.Log("Collected");
-        interstitialAd.ShowAd();
+        if (!noads)
+        {
+            interstitialAd.ShowAd();
+
+        }
         if (isChickens)
         {
             storage.IncreaseEggs(value);
@@ -68,4 +82,6 @@ public class CollectionScript : MonoBehaviour
         visibility.SetFalse();
         canvas.SetActive(false);
     }
+
+    
 }

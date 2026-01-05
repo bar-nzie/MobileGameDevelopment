@@ -15,6 +15,10 @@ public class BannerAd : MonoBehaviour
     [SerializeField] string _iOSAdUnitId = "Banner_iOS";
     string _adUnitId = null; // This will remain null for unsupported platforms.
 
+    bool noads = false;
+    public GameObject IAP;
+    public IAPFarmHero nomore;
+
     void Start()
     {
         // Get the Ad Unit ID for the current platform:
@@ -34,6 +38,14 @@ public class BannerAd : MonoBehaviour
         // Configure the Load Banner button to call the LoadBanner() method when clicked:
         _loadBannerButton.onClick.AddListener(LoadBanner);
         _loadBannerButton.interactable = true;
+
+        IAP = GameObject.Find("MainUI");
+        nomore = IAP.GetComponent<IAPFarmHero>();
+    }
+
+    private void Update()
+    {
+        noads = nomore.SetNoads();
     }
 
     // Implement a method to call when the Load Banner button is clicked:
@@ -75,16 +87,19 @@ public class BannerAd : MonoBehaviour
     // Implement a method to call when the Show Banner button is clicked:
     void ShowBannerAd()
     {
-        // Set up options to notify the SDK of show events:
-        BannerOptions options = new BannerOptions
+        if (!noads)
         {
-            clickCallback = OnBannerClicked,
-            hideCallback = OnBannerHidden,
-            showCallback = OnBannerShown
-        };
+            // Set up options to notify the SDK of show events:
+            BannerOptions options = new BannerOptions
+            {
+                clickCallback = OnBannerClicked,
+                hideCallback = OnBannerHidden,
+                showCallback = OnBannerShown
+            };
 
-        // Show the loaded Banner Ad Unit:
-        Advertisement.Banner.Show(_adUnitId, options);
+            // Show the loaded Banner Ad Unit:
+            Advertisement.Banner.Show(_adUnitId, options);
+        }
     }
 
     // Implement a method to call when the Hide Banner button is clicked:

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "com.benoitfreslon.vibration": "https://github.com/BenoitFreslon/Vibration.git",
+    "com.benoitfreslon.vibration": "file:C:/Users/S23130205/MobileGameDevelopment/Vibration-master",
     "com.unity.ads": "4.16.4",
     "com.unity.ai.navigation": "2.0.8",
     "com.unity.collab-proxy": "2.9.3",

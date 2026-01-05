@@ -1,11 +1,10 @@
 {
   "dependencies": {
     "com.benoitfreslon.vibration": {
-      "version": "https://github.com/BenoitFreslon/Vibration.git",
+      "version": "file:C:/Users/S23130205/MobileGameDevelopment/Vibration-master",
       "depth": 0,
-      "source": "git",
-      "dependencies": {},
-      "hash": "fc3a724623c7da74c3c067f9952ecc588b39a730"
+      "source": "local",
+      "dependencies": {}
     },
     "com.unity.ads": {
       "version": "4.16.4",
